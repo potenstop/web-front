@@ -2,21 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// @ts-ignore
 import iView from 'iview'
-import 'iview/dist/styles/iview.css'
 
-import VueHighlightJS from 'vue-highlightjs'
+import 'iview/dist/styles/iview.css'
 import 'highlight.js/styles/atom-one-dark.css'
 
-import JsonEditor from 'vue-json-edit'
-
 Vue.config.productionTip = false
-Vue.use(iView);
-
-Vue.use(VueHighlightJS)
-Vue.use(JsonEditor)
-
-
+Vue.use(iView)
 
 new Vue({
   router,

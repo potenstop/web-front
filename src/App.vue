@@ -37,6 +37,14 @@
         </template>
         <MenuItem name="/sequence/json">json</MenuItem>
       </Submenu>
+      <Submenu name="/encrypt">
+        <template slot="title">
+          <Icon type="ios-analytics" />
+          加解密
+        </template>
+        <MenuItem name="/encrypt/decode">加密</MenuItem>
+        <MenuItem name="/encrypt/encode">解密</MenuItem>
+      </Submenu>
     </Menu>
     <router-view/>
   </div>

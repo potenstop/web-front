@@ -19,9 +19,19 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: "/sequence/json",
-      name: 'sequenceJson',
+      path: '/sequence/json',
+      name: 'sequenceMyJson',
       component: () => import(/* webpackChunkName: "about" */ './views/sequence/Json.vue')
+    },
+    {
+      path: '/encrypt/decode',
+      name: 'encryptDecode',
+      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Decode.vue')
+    },
+    {
+      path: '/encrypt/encode',
+      name: 'encryptEncode',
+      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Encode.vue')
     }
 
   ]

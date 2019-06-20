@@ -1,143 +1,86 @@
 <template>
-  <div>
-    <!--<Input v-model="inputData" placeholder="Enter something..." style="width: 300px" />-->
-      <div class="editor-w clearfix">
-        <div class="w-2">
-          <div class="editor">
-            <JsonEditor
-              :options="{confirmText: 'confirm',cancelText: 'cancel'}"
-              :objData="jsonData"
-              v-model="jsonData" ></JsonEditor>
-          </div>
-        </div>
-        <div class="w-2">
-          <div class="code-pre">
-            <div slot="content">
-              <pre>
-                <code class="json" id="res_code"></code>
-              </pre>
-            </div>
-          </div>
-        </div>
-    </div>
+  <div class="demo-split">
+    <Split v-model="split">
+      <div slot="left" class="demo-split-left-pane">
+        <Input v-model="inputData" type="textarea" :rows="18" placeholder="输入json" style="width: 100%;height: 1000px;display: block;max-width:100%" />
+      </div>
+      <div slot="right" class="demo-split-right-pane">
+        <ButtonGroup size="small">
+          <Button icon="md-copy" class="copyOrderSn" style="border-width: 0;" data-clipboard-action="copy" :data-clipboard-text="outData" @click="copyLink">copy</Button>
+          <Button icon="md-plane" style="border-width: 0;" @click="changeCodeType('json')">json</Button>
+          <Button icon="logo-nodejs format" style="border-width: 0;" @click="changeCodeType('JavaScript')">js</Button>
+        </ButtonGroup>
+        <hr align="center" color="#987cb9" size="1">
+        <pre id="code" :class="codeType" ></pre>
+      </div>
 
+    </Split>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import hljs from 'highlight.js'
-@Component
-export default class Json extends Vue {
-    private inputData!: string;
-    private jsonData = {
-      name: 'mike',
-      age: 23,
-      phone: '18552129932',
-      address: ['AAA C1', 'BBB C2']
-    };
-    @Watch('jsonData')
-    onJsonData (old: any, n: any) {
-      let c = this.formatJson(JSON.stringify(this.jsonData), false)
-      this.drawResCode(c)
-    }
-    formatJson (txt: string, compress: boolean) {
-      /* 格式化JSON源码(对象转换为JSON文本) */
-      var indentChar = '  '
-      if (/^\s*$/.test(txt)) {
-        console.error('数据为空,无法格式化! ')
-        return
-      }
-      try {
-        var data = eval('(' + txt + ')')
-      } catch (e) {
-        throw ('数据源语法错误,格式化失败! 错误信息: ' + e.description, 'err')
-      }
-      var draw = []
-      var last = false
-      var This = this
-      var line = compress ? '' : '\n'
-      var nodeCount = 0
-      var maxDepth = 0
-      var notify = function (name, value, isLast, indent /* 缩进 */, formObj) {
-        nodeCount++ /* 节点计数 */
-        for (var i = 0, tab = ''; i < indent; i++) tab += indentChar /* 缩进HTML */
-        tab = compress ? '' : tab /* 压缩模式忽略缩进 */
-        maxDepth = ++indent /* 缩进递增并记录 */
-        if (value && value.constructor == Array) {
-          /* 处理数组 */
-          draw.push(
-            tab + (formObj ? '"' + name + '":' : '') + '[' + line
-          ) /* 缩进'[' 然后换行 */
-          for (var i = 0; i < value.length; i++) { notify(i, value[i], i == value.length - 1, indent, false) }
-          draw.push(
-            tab + ']' + (isLast ? line : ',' + line)
-          ) /* 缩进']'换行,若非尾元素则添加逗号 */
-        } else if (value && typeof value === 'object') {
-          /* 处理对象 */
-          draw.push(
-            tab + (formObj ? '"' + name + '":' : '') + '{' + line
-          ) /* 缩进'{' 然后换行 */
-          var len = 0
-          var i = 0
-          for (var key in value) len++
-          for (var key in value) notify(key, value[key], ++i == len, indent, true)
-          draw.push(
-            tab + '}' + (isLast ? line : ',' + line)
-          ) /* 缩进'}'换行,若非尾元素则添加逗号 */
-        } else {
-          if (typeof value === 'string') value = '"' + value + '"'
-          draw.push(
-            tab +
-            (formObj ? '"' + name + '":' : '') +
-            value +
-            (isLast ? '' : ',') +
-            line
-          )
-        }
-      }
-      var isLast = true
-      var indent = 0
-      notify('', data, isLast, indent, false)
-      return draw.join('')
-    }
-    drawResCode (content) {
-      const target = document.getElementById('res_code')
-      target.textContent = content
-      hljs.highlightBlock(target)
-    }
-    mounted () {
-      let c = this.formatJson(JSON.stringify(this.jsonData), false)
-      this.drawResCode(c)
-    }
-}
-</script>
+import Highlight from 'highlight.js'
+import { SysUtil } from '@/common/util/SysUtil'
+import Clipboard from 'clipboard'
 
-<!--<script>
-export default {
-  name: 'app',
-  data: function () {
-    return {
-      jsonData: {
-        name: 'may',
-        age: 23,
-        address: ['Panyu Shiqiao on Canton', 'Tianhe', {
-          city: 'forida meta 11'
-        }],
-        ohters: {
-          id: 1246,
-          joinTime: '2017-08-20. 10:20',
-          description: 'another'
-        }
+@Component
+export default class App extends Vue {
+  private split: number = 0.5
+  private inputData: string = ''
+  private outData: string = ''
+  private codeType: string = 'json'
+  changeCodeType (type: string) {
+    if (type === 'json') {
+      this.codeType = 'json'
+      try {
+        this.outData = JSON.stringify(SysUtil.evil('(' + this.inputData + ')'), null, 2)
+      } catch (e) {
+        this.outData = 'error format: ' + e.message
       }
     }
-  },
-  watch: {
-    'jsonData': function () {
-      console.log("==================")
+    console.log('start draw ', this.outData)
+    this.drawResCode(this.outData)
+  }
+  drawResCode (content: string) {
+    const target = document.getElementById('code')
+    if (target) {
+      target.textContent = content
+      Highlight.highlightBlock(target)
     }
   }
+  copyLink () {
+    if (!this.outData) {
+      this.$Message.warning('文本为空')
+      return
+    }
+    let clipboard = new Clipboard('.copyOrderSn')
+    clipboard.on('success', (e) => {
+      e.clearSelection()
+      clipboard.destroy()
+      this.$Message.success('复制成功')
+    })
+    clipboard.on('error', (e) => {
+      e.clearSelection()
+      clipboard.destroy()
+      this.$Message.error('失败')
+    })
+  }
 }
-</script>-->
-<style scoped>
 
+</script>
+
+<style lang="less" scoped>
+@import "../../assets/icons/iconfont.css";
+.demo-split{
+  height: 400px;
+  border: 1px solid #dcdee2;
+}
+.demo-split-left-pane{
+  overflow:hidden;
+  padding-right: 3px;
+}
+.demo-split-right-pane{
+  padding-left: 5px;
+}
 </style>
