@@ -79,7 +79,7 @@ export class EncryptUtil {
   public static encode (str: string) {
     CryptoJs.MD5(str)
   }
-  public static getDecodeTypeList(): EncryptType[] {
+  public static getDecodeTypeList (): EncryptType[] {
     const encryptTypes: EncryptType[] = []
     encryptTypes.push(new EncryptType('md5', 'md5', false))
     encryptTypes.push(new EncryptType('sha1', 'sha1', false))
@@ -92,14 +92,14 @@ export class EncryptUtil {
     encryptTypes.push(new EncryptType('rabbit', 'rabbit', true))
     encryptTypes.push(new EncryptType('enc-base64', 'base64', false))
     encryptTypes.push(new EncryptType('url', 'url', false))
-    return encryptTypes;
+    return encryptTypes
   }
-  public static getEncodeTypeList(): EncryptType[] {
+  public static getEncodeTypeList (): EncryptType[] {
     const encryptTypes: EncryptType[] = []
     encryptTypes.push(new EncryptType('aes', 'aes', true))
     encryptTypes.push(new EncryptType('rabbit', 'rabbit', true))
     encryptTypes.push(new EncryptType('enc-base64', 'base64', false))
     encryptTypes.push(new EncryptType('url', 'url', false))
-    return encryptTypes;
+    return encryptTypes
   }
 }

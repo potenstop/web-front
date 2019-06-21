@@ -6,12 +6,18 @@
       </div>
       <div slot="right" class="demo-split-right-pane">
         <ButtonGroup size="small">
-          <Button icon="md-copy" class="copyOrderSn" style="border-width: 0;" data-clipboard-action="copy" :data-clipboard-text="outData" @click="copyLink">copy</Button>
-          <Button icon="md-plane" style="border-width: 0;" @click="changeCodeType('json')">json</Button>
-          <Button icon="logo-nodejs format" style="border-width: 0;" @click="changeCodeType('JavaScript')">js</Button>
+          <Tooltip placement="top" content="复制">
+            <Button icon="md-copy" class="copyOrderSn" style="border-width: 0;" data-clipboard-action="copy" :data-clipboard-text="outData" @click="copyLink"></Button>
+          </Tooltip>
+          <Tooltip placement="top" content="json格式化">
+            <Button custom-icon="iconfont icon-json" style="border-width: 0;" @click="changeCodeType('json')"></Button>
+          </Tooltip>
+          <Tooltip placement="top" content="json压缩">
+            <Button custom-icon="iconfont icon-jsongeshihua" style="border-width: 0;" @click="changeCodeType('jsonString')"></Button>
+          </Tooltip>
         </ButtonGroup>
         <hr align="center" color="#987cb9" size="1">
-        <pre id="code" :class="codeType" ></pre>
+        <pre><code class="nohighlight" v-html="outData"></code></pre>
       </div>
 
     </Split>
@@ -27,7 +33,7 @@ import Clipboard from 'clipboard'
 @Component
 export default class App extends Vue {
   private split: number = 0.5
-  private inputData: string = ''
+  private inputData: string = '{"a":1,"b":[{"c":2}]}'
   private outData: string = ''
   private codeType: string = 'json'
   changeCodeType (type: string) {
@@ -38,16 +44,16 @@ export default class App extends Vue {
       } catch (e) {
         this.outData = 'error format: ' + e.message
       }
+    } else if (type === 'jsonString') {
+      this.outData = JSON.stringify(SysUtil.evil('(' + this.inputData + ')'), null)
+      this.codeType = 'plaintext'
     }
-    console.log('start draw ', this.outData)
     this.drawResCode(this.outData)
   }
   drawResCode (content: string) {
-    const target = document.getElementById('code')
-    if (target) {
-      target.textContent = content
-      Highlight.highlightBlock(target)
-    }
+    const html = Highlight.highlightAuto(content, [this.codeType]).value
+    const list = html.split('\n')
+    this.outData = html
   }
   copyLink () {
     if (!this.outData) {
