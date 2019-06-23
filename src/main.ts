@@ -11,7 +11,12 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 Vue.config.productionTip = false
 Vue.use(iView)
-
+router.beforeEach((to, from, next) => {
+  if (to.meta) {
+    document.title = to.meta.title
+  }
+  next()
+})
 new Vue({
   router,
   store,

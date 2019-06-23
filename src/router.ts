@@ -11,27 +11,34 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: Home,
+      meta: {
+        title: '首页'
+      }
     },
     {
       path: '/sequence/json',
       name: 'sequenceMyJson',
-      component: () => import(/* webpackChunkName: "about" */ './views/sequence/Json.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/sequence/Json.vue'),
+      meta: {
+        title: 'json序列化'
+      }
     },
     {
       path: '/encrypt/decode',
       name: 'encryptDecode',
-      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Decode.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Decode.vue'),
+      meta: {
+        title: '加密'
+      }
     },
     {
       path: '/encrypt/encode',
       name: 'encryptEncode',
-      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Encode.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/encrypt/Encode.vue'),
+      meta: {
+        title: '解密'
+      }
     }
 
   ]
