@@ -64,7 +64,7 @@ export default class App extends Vue {
       this.outData = langBean.toJavaString()
       this.codeType = 'java'
     } else if (type === 'typescript') {
-      const langBean = new LangBean(json, {hasGetSet: true})
+      const langBean = new LangBean(json)
       this.outData = langBean.toTypeString()
       this.codeType = 'typescript'
     }
