@@ -7,12 +7,12 @@
  * @author yanshaowen
  * @date 2019/6/20 10:23
  */
-import * as CryptoJs from 'crypto-js';
-import {EncryptResult} from "@/bmo/EncryptResult";
-import {EncryptType} from "@/bmo/EncryptType";
+import * as CryptoJs from 'crypto-js'
+import { EncryptResult } from "@/bmo/EncryptResult"
+import { EncryptType } from "@/bmo/EncryptType"
 export class EncryptUtil {
   public static decode (type: string, str: string, salt?: string): EncryptResult {
-    const encryptResult = new EncryptResult();
+    const encryptResult = new EncryptResult()
     encryptResult.name = type
     if (!salt) salt = ''
     switch (type) {
@@ -57,7 +57,7 @@ export class EncryptUtil {
     return encryptResult
   }
   public static encode0 (type: string, str: string, salt?: string): EncryptResult {
-    const encryptResult = new EncryptResult();
+    const encryptResult = new EncryptResult()
     encryptResult.name = type
     if (!salt) salt = ''
     switch (type) {

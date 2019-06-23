@@ -41,8 +41,8 @@
 // 加密
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { EncryptType } from '@/bmo/EncryptType'
-import {EncryptResult} from "@/bmo/EncryptResult"
-import {EncryptUtil} from "@/common/util/EncryptUtil"
+import { EncryptResult } from '@/bmo/EncryptResult'
+import { EncryptUtil } from '@/common/util/EncryptUtil'
 import Clipboard from 'clipboard'
 
 @Component
@@ -98,7 +98,7 @@ export default class App extends Vue {
   transform () {
     this.transformResults = []
     for (const item of this.chooseEncryptTypes) {
-      this.transformResults.push(EncryptUtil.decode(item, this.inputData, this.salt));
+      this.transformResults.push(EncryptUtil.decode(item, this.inputData, this.salt))
     }
   }
   copyLink (data: string) {

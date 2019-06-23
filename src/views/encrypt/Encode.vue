@@ -38,15 +38,15 @@
 </template>
 
 <script lang="ts">
-  // 解密
-  import { Component, Vue, Watch } from 'vue-property-decorator'
-  import { EncryptType } from '@/bmo/EncryptType'
-  import {EncryptResult} from "@/bmo/EncryptResult"
-  import {EncryptUtil} from "@/common/util/EncryptUtil"
-  import Clipboard from 'clipboard'
+// 解密
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { EncryptType } from '@/bmo/EncryptType'
+import { EncryptResult } from '@/bmo/EncryptResult'
+import { EncryptUtil } from '@/common/util/EncryptUtil'
+import Clipboard from 'clipboard'
 
   @Component
-  export default class App extends Vue {
+export default class App extends Vue {
     private split: number = 0.5
     private split1: number = 0.3
     private inputData: string = ''
@@ -98,7 +98,7 @@
     transform () {
       this.transformResults = []
       for (const item of this.chooseEncryptTypes) {
-        this.transformResults.push(EncryptUtil.encode0(item, this.inputData, this.salt));
+        this.transformResults.push(EncryptUtil.encode0(item, this.inputData, this.salt))
       }
     }
     copyLink (data: string) {
@@ -118,7 +118,7 @@
         this.$Message.error('失败')
       })
     }
-  }
+}
 </script>
 <style scoped>
   .split{
