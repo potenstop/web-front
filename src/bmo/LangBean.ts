@@ -7,9 +7,8 @@
  * @author yanshaowen
  * @date 2019/6/22 12:50
  */
-import { ConvertUtil } from '@/common/util/ConvertUtil'
-import { JSHelperUtil } from '@/common/util/JSHelperUtil'
-import { ConvertConstant } from '@/common/constant/ConvertConstant'
+
+import { ConvertUtil, JSHelperUtil } from 'papio-common'
 class Field {
   public name: string
   public javaType: string
@@ -121,7 +120,7 @@ export class LangBean {
         this.addField(field)
       } else if (JSHelperUtil.isClassObject(value)) {
         // 去掉结尾的s 或者list
-        const ends: string[] = [ConvertConstant.BEAN_LIST_END_S, ConvertConstant.BEAN_LIST_END_LIST]
+        const ends: string[] = ['s', 'list']
         for (const end of ends) {
           if (key.slice(key.length - end.length, key.length) === end) {
             key = key.slice(0, key.length - end.length)
