@@ -36,6 +36,8 @@ import Highlight from 'highlight.js'
 import { SysUtil } from '@/common/util/SysUtil'
 import Clipboard from 'clipboard'
 import { LangBean } from '@/bmo/LangBean'
+import { Autowired, Configuration } from 'papio-common'
+import { MemberApi } from '@/dao/api/MemberApi'
 
 @Component
 export default class App extends Vue {

@@ -51,7 +51,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-
+import '@/config/HttpApiConfiguration'
 @Component
 export default class App extends Vue {
   private theme1: string = 'light';

@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import * as Cookies from 'js-cookie'
 import { SysUtil } from '@/common/util/SysUtil'
 import { MemberApi } from '@/dao/api/MemberApi'
-import { MemberRegisterRequest } from '@/request/MemberRegisterRequest'
 Vue.use(Vuex)
 class Member {
   memberId: number
@@ -25,7 +24,6 @@ export default new Vuex.Store({
       // 登入状态
       state.loginState.loginIn = true
       state.loginState.member = member
-      console.log('==================')
       Cookies.set('loginState', state.loginState, { expires: 1 })
       Cookies.set('uuid', state.uuid)
     },
@@ -55,12 +53,13 @@ export default new Vuex.Store({
       const memberApi = new MemberApi()
       try {
         let result = await memberApi.visitorLogin(state.uuid)
+        console.log(result)
         if (result.getCode() === '0') {
           commit('loginIn', result.getData())
         }
       } catch (e) {
         // 请求失败
-        console.error('请求失败了')
+        console.error('请求失败了', e)
       }
     }
   },

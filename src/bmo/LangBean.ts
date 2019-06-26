@@ -120,7 +120,7 @@ export class LangBean {
         this.addField(field)
       } else if (JSHelperUtil.isClassObject(value)) {
         // 去掉结尾的s 或者list
-        const ends: string[] = ['s', 'list']
+        const ends: string[] = ['s', 'List']
         for (const end of ends) {
           if (key.slice(key.length - end.length, key.length) === end) {
             key = key.slice(0, key.length - end.length)
