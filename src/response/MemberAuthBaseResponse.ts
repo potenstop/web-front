@@ -1,3 +1,5 @@
+import {MemberAuth} from "@/response/MemberAuth";
+import { Property } from 'papio-common'
 /**
  *
  * 功能描述:
@@ -7,12 +9,16 @@
  * @author yanshaowen
  * @date 2019/6/24 14:18
  */
-import {MemberAuth} from "@/response/MemberAuth";
+
 
 export class MemberAuthBaseResponse {
+  @Property
   private memberId: number
+  @Property
   private nickname: string
+  @Property
   private avatar: string
+  @Property
   private memberAuthList: MemberAuth[]
   public getMemberId (): number {
     return this.memberId

@@ -16,7 +16,7 @@ import {
 } from 'papio-common'
 import { ApiResult } from "@/bmo/ApiResult"
 import { MemberAuthBaseResponse } from "@/response/MemberAuthBaseResponse"
-@AxisoRemote({filepath: '/src/dao/api', name: "/member", timeout: 2000})
+@AxisoRemote({filepath: '/src/dao/api', name: "/member", timeout: 5000})
 export class MemberApi {
   @RequestMapping({path: "visitor/login", method: RequestMethod.GET})
   @ReturnGenericsProperty(new Map<string, new () => object>().set("ApiResult", ApiResult).set("ApiResult.data", MemberAuthBaseResponse))

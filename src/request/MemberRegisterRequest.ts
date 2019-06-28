@@ -1,3 +1,5 @@
+import { Property } from 'papio-common'
+
 /**
  *
  * 功能描述:
@@ -8,9 +10,13 @@
  * @date 2019/6/24 14:18
  */
 export class MemberRegisterRequest {
+  @Property
   private credential: string
+  @Property
   private identifier: string
+  @Property
   private identityType: number
+  @Property
   private nickname: string
   public getCredential (): string {
     return this.credential

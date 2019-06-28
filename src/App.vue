@@ -45,6 +45,7 @@
         <MenuItem name="/encrypt/decode">加密</MenuItem>
         <MenuItem name="/encrypt/encode">解密</MenuItem>
       </Submenu>
+      <MenuItem name="/code">代码</MenuItem>
     </Menu>
     <router-view/>
   </div>

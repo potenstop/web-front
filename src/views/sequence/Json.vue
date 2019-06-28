@@ -25,20 +25,16 @@
         <hr align="center" color="#987cb9" size="1">
         <pre><code class="nohighlight" v-html="outData"></code></pre>
       </div>
-
     </Split>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import Highlight from 'highlight.js'
 import { SysUtil } from '@/common/util/SysUtil'
 import Clipboard from 'clipboard'
 import { LangBean } from '@/bmo/LangBean'
-import { Autowired, Configuration } from 'papio-common'
-import { MemberApi } from '@/dao/api/MemberApi'
-
 @Component
 export default class App extends Vue {
   private split: number = 0.5

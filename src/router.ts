@@ -39,6 +39,14 @@ export default new Router({
       meta: {
         title: '解密'
       }
+    },
+    {
+      path: '/code',
+      name: 'code',
+      component: () => import(/* webpackChunkName: "about" */ './views/code/Code.vue'),
+      meta: {
+        title: '解密'
+      }
     }
 
   ]
