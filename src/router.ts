@@ -47,6 +47,22 @@ export default new Router({
       meta: {
         title: '解密'
       }
+    },
+    {
+      path: '/office/execl',
+      name: 'officeExecl',
+      component: () => import(/* webpackChunkName: "about" */ './views/office/Execl.vue'),
+      meta: {
+        title: '在线表格'
+      }
+    },
+    {
+      path: '/generate/spring-boot-z',
+      name: 'generateSpringBootApi',
+      component: () => import(/* webpackChunkName: "about" */ './views/generate/SpringBootZ.vue'),
+      meta: {
+        title: '在线表格'
+      }
     }
 
   ]

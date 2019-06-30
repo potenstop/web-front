@@ -1,32 +1,3 @@
-<!--<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/sequence/json">About</router-link>
-    </div>
-    <router-view/>
-  </div>
-</template>
-
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>-->
 <template>
   <div>
     <Menu mode="horizontal" :theme="theme1" active-name="1" @on-select="navigateTo">
@@ -46,6 +17,20 @@
         <MenuItem name="/encrypt/encode">解密</MenuItem>
       </Submenu>
       <MenuItem name="/code">代码</MenuItem>
+      <Submenu name="/office">
+        <template slot="title">
+          <Icon type="ios-stats" />
+          在线办公
+        </template>
+        <MenuItem name="/office/execl">execl</MenuItem>
+      </Submenu>
+      <Submenu name="/generate">
+        <template slot="title">
+          <Icon type="ios-stats" />
+          代码生成
+        </template>
+        <MenuItem name="/generate/spring-boot-z">spring-boot-z 接口生成</MenuItem>
+      </Submenu>
     </Menu>
     <router-view/>
   </div>

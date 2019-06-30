@@ -5,7 +5,7 @@
         <Split v-model="split1" mode="vertical">
           <div slot="top" class="split-pane">
             <Select v-model="chooseLang" clearable style="width:200px" @on-change="changeLang" :clearable="false">
-              <Option v-for="item in langs" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Option v-for="item in langs" :value="item.getLang()" :key="item.getLang()">{{ item.getLabel() }}</Option>
             </Select>
             <Button type="primary" style="float: right" @click="runCode">提交运行</Button>
 
@@ -28,9 +28,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Clipboard from 'clipboard'
 import Ace from 'ace-builds'
-import 'ace-builds/webpack-resolver'
 import { CodeApi } from '@/dao/api/CodeApi'
 import { CodeRunRequest } from '@/request/CodeRunRequest'
+import { LangCodeDefault } from '@/bmo/LangCodeDefault'
+import { LangCode } from '@/bmo/LangCode'
 @Component
 export default class App extends Vue {
   private split: number = 0.6
@@ -38,14 +39,8 @@ export default class App extends Vue {
   private inputData: string = ''
   private outputData: string = ''
   private codeApi = new CodeApi()
-  private langs = [{
-    'value': 'javascript',
-    'label': 'js'
-  }, {
-    'value': 'java',
-    'label': 'java'
-  }]
-  private chooseLang = 'javascript'
+  private langs: LangCode[] = LangCodeDefault.getAllList()
+  private chooseLang: string = 'java'
   private editor: Ace.Ace.Editor = null
   private spinShow: boolean = false
   mounted () {
@@ -73,12 +68,14 @@ export default class App extends Vue {
     if (this.editor != null) {
       this.editor.destroy()
     }
+    const lang = LangCodeDefault.getLang(this.chooseLang)
     this.editor = Ace.edit('editorDiv', {
-      mode: 'ace/mode/' + this.chooseLang,
+      mode: 'ace/mode/' + lang.getLang(),
       theme: 'ace/theme/dracula',
       maxLines: 32,
       minLines: 20,
-      fontSize: 18
+      fontSize: 18,
+      value: lang.getDefaultCode()
     })
   }
   async runCode () {
