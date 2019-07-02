@@ -29,7 +29,7 @@
           <Icon type="ios-stats" />
           代码生成
         </template>
-        <MenuItem name="/generate/spring-boot-z">spring-boot-z 接口生成</MenuItem>
+        <MenuItem name="/generate/spring-boot">spring-boot 接口生成</MenuItem>
       </Submenu>
     </Menu>
     <router-view/>

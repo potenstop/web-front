@@ -57,9 +57,9 @@ export default new Router({
       }
     },
     {
-      path: '/generate/spring-boot-z',
+      path: '/generate/spring-boot',
       name: 'generateSpringBootApi',
-      component: () => import(/* webpackChunkName: "about" */ './views/generate/SpringBootZ.vue'),
+      component: () => import(/* webpackChunkName: "about" */ './views/generate/SpringBoot.vue'),
       meta: {
         title: '在线表格'
       }

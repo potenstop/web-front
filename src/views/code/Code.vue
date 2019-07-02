@@ -4,7 +4,7 @@
       <div slot="left" class="split-pane no-padding">
         <Split v-model="split1" mode="vertical">
           <div slot="top" class="split-pane">
-            <Select v-model="chooseLang" clearable style="width:200px" @on-change="changeLang" :clearable="false">
+            <Select v-model="chooseLang" style="width:200px" @on-change="changeLang" :clearable="false">
               <Option v-for="item in langs" :value="item.getLang()" :key="item.getLang()">{{ item.getLabel() }}</Option>
             </Select>
             <Button type="primary" style="float: right" @click="runCode">提交运行</Button>
