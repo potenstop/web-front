@@ -23,7 +23,7 @@
           </Tooltip>
         </ButtonGroup>
         <hr align="center" color="#987cb9" size="1">
-        <pre><code class="nohighlight" v-html="outData"></code></pre>
+        <pre id="outCode"></pre>
       </div>
     </Split>
   </div>
@@ -31,10 +31,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Highlight from 'highlight.js'
 import { SysUtil } from '@/common/util/SysUtil'
 import Clipboard from 'clipboard'
 import { LangBean } from '@/bmo/LangBean'
+import Ace from 'ace-builds'
+import 'ace-builds/webpack-resolver'
 @Component
 export default class App extends Vue {
   private split: number = 0.5
@@ -42,6 +43,7 @@ export default class App extends Vue {
   private outData: string = ''
   private codeType: string = 'json'
   private copyData: string = ''
+  private outCodeAceEdit: Ace.Ace.Editor = null
   changeCodeType (type: string) {
     let json: any = {}
     try {
@@ -69,10 +71,25 @@ export default class App extends Vue {
     this.drawResCode(this.outData)
   }
   drawResCode (content: string) {
+    // this.copyData = content
+    // const html = Highlight.highlightAuto(content, [this.codeType]).value
+    // const list = html.split('\n')
+    // this.outData = html
     this.copyData = content
-    const html = Highlight.highlightAuto(content, [this.codeType]).value
-    const list = html.split('\n')
-    this.outData = html
+    if (this.outCodeAceEdit) {
+      this.outCodeAceEdit.session.setValue(content)
+      this.outCodeAceEdit.session.setMode('ace/mode/' + this.codeType)
+      return
+    }
+    this.outCodeAceEdit = Ace.edit('outCode', {
+      mode: 'ace/mode/' + this.codeType,
+      theme: 'ace/theme/dracula',
+      maxLines: 50,
+      minLines: 18,
+      fontSize: 18,
+      value: content,
+      readOnly: true
+    })
   }
   copyLink () {
     if (!this.copyData) {

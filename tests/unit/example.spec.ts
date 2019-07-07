@@ -8,5 +8,9 @@ describe('HelloWorld.vue', () => {
       propsData: { msg }
     })
     expect(wrapper.text()).toMatch(msg)
+  }),
+  it('get all memberId', () => {
+    const order = require('./order.json')
+    console.log(order.results.rows)
   })
 })
