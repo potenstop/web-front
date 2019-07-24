@@ -32,6 +32,7 @@ import { CodeApi } from '@/dao/api/CodeApi'
 import { CodeRunRequest } from '@/request/CodeRunRequest'
 import { LangCodeDefault } from '@/bmo/LangCodeDefault'
 import { LangCode } from '@/bmo/LangCode'
+import 'ace-builds/webpack-resolver'
 @Component
 export default class App extends Vue {
   private split: number = 0.6

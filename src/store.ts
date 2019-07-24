@@ -2,35 +2,35 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as Cookies from 'js-cookie'
 import { SysUtil } from '@/common/util/SysUtil'
-import { MemberApi } from '@/dao/api/MemberApi'
+import { UserApi } from '@/dao/api/UserApi'
 Vue.use(Vuex)
-class Member {
-  memberId: number
+class User {
+  userId: number
   nickname: string
 }
 export default new Vuex.Store({
   state: {
     loginState: {
       loginIn: false,
-      member: {
+      user: {
         nickname: '',
-        memberId: 0
+        userId: 0
       }
     },
     uuid: ''
   },
   mutations: {
-    loginIn (state, member: Member) {
+    loginIn (state, user: User) {
       // 登入状态
       state.loginState.loginIn = true
-      state.loginState.member = member
+      state.loginState.user = user
       Cookies.set('loginState', state.loginState, { expires: 1 })
       Cookies.set('uuid', state.uuid)
     },
     loginOut (state) {
       // 登出状态
       state.loginState.loginIn = false
-      state.loginState.member = new Member()
+      state.loginState.user = new User()
       Cookies.remove('loginState')
     },
     syncLoginState (state) {
@@ -50,9 +50,9 @@ export default new Vuex.Store({
   actions: {
     async authUser ({ state, commit }) {
       // 从服务器端校验本地登录 Cookie 有效性
-      const memberApi = new MemberApi()
+      const userApi = new UserApi()
       try {
-        let result = await memberApi.visitorLogin(state.uuid)
+        let result = await userApi.visitorLogin(state.uuid)
         console.log(result)
         if (result.getCode() === '0') {
           commit('loginIn', result.getData())
@@ -66,7 +66,7 @@ export default new Vuex.Store({
   getters: {
     nickname: (state, getters, rootState) => {
       if (state.loginState.loginIn) {
-        return state.loginState.member.nickname
+        return state.loginState.user.nickname
       }
     },
     offLine: (state, getters, rootState) => {

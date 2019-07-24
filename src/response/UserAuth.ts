@@ -4,23 +4,23 @@ import { Property } from 'papio-common'
  *
  * 功能描述:
  *
- * @className MemberAuth
+ * @className UserAuth
  * @projectName web-front
  * @author yanshaowen
  * @date 2019/6/26 12:47
  */
-export class MemberAuth {
+export class UserAuth {
   @Property
-  private memberAuthId: number
+  private userAuthId: number
   @Property
   private identityType: number
   @Property
   private identifier: string
-  public getMemberAuthId (): number {
-    return this.memberAuthId
+  public getUserAuthId (): number {
+    return this.userAuthId
   }
-  public setMemberAuthId (memberAuthId: number): void {
-    this.memberAuthId = memberAuthId
+  public setUserAuthId (userAuthId: number): void {
+    this.userAuthId = userAuthId
   }
   public getIdentityType (): number {
     return this.identityType

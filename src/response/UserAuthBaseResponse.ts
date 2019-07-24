@@ -1,30 +1,30 @@
-import {MemberAuth} from "@/response/MemberAuth";
+import {UserAuth} from "@/response/UserAuth";
 import { Property } from 'papio-common'
 /**
  *
  * 功能描述:
  *
- * @className MemberAuthBaseResponse
+ * @className UserAuthBaseResponse
  * @projectName web-front
  * @author yanshaowen
  * @date 2019/6/24 14:18
  */
 
 
-export class MemberAuthBaseResponse {
+export class UserAuthBaseResponse {
   @Property
-  private memberId: number
+  private userId: number
   @Property
   private nickname: string
   @Property
   private avatar: string
   @Property
-  private memberAuthList: MemberAuth[]
-  public getMemberId (): number {
-    return this.memberId
+  private userAuthList: UserAuth[]
+  public getUserId (): number {
+    return this.userId
   }
-  public setMemberId (memberId: number): void {
-    this.memberId = memberId
+  public setUserId (userId: number): void {
+    this.userId = userId
   }
   public getNickname (): string {
     return this.nickname
@@ -38,11 +38,11 @@ export class MemberAuthBaseResponse {
   public setAvatar (avatar: string): void {
     this.avatar = avatar
   }
-  public getMemberAuthList (): MemberAuth[] {
-    return this.memberAuthList
+  public getUserAuthList (): UserAuth[] {
+    return this.userAuthList
   }
-  public setMemberAuthList (memberAuthList: MemberAuth[]): void {
-    this.memberAuthList = memberAuthList
+  public setUserAuthList (userAuthList: UserAuth[]): void {
+    this.userAuthList = userAuthList
   }
 }
 
