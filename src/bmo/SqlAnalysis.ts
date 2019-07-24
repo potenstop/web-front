@@ -282,7 +282,7 @@ export class SqlAnalysis {
     strList.push(`public class ${className} {${this.line}`)
     strList.push(`${this.line}`)
     fileds.forEach(filed => {
-      strList.push(`${this.spaceString}@ApiModelProperty(value = "${filed.comment ? filed.comment : ''}", name = "${filed.filedName}", required = "${filed.required}, example = "${filed.defaultValue}")${this.line}`)
+      strList.push(`${this.spaceString}@ApiModelProperty(value = "${filed.comment ? filed.comment : ''}", name = "${filed.filedName}", required = "${filed.required}", example = "${filed.defaultValue}")${this.line}`)
       if (this.requestVerifyAnnotation) {
         if (filed.required) {
           strList.push(`${this.spaceString}@NotNull${this.line}`)
@@ -354,7 +354,7 @@ export class SqlAnalysis {
     strList.push(`public class ${className} {${this.line}`)
     strList.push(`${this.line}`)
     fileds.forEach(filed => {
-      strList.push(`${this.spaceString}@ApiModelProperty(value = "${filed.comment ? filed.comment : ''}", name = "${filed.filedName}", required = ${filed.required}, example = "${filed.defaultValue ? filed.defaultValue : ''}")${this.line}`)
+      strList.push(`${this.spaceString}@ApiModelProperty(value = "${filed.comment ? filed.comment : ''}", name = "${filed.filedName}", required = "${filed.required}", example = "${filed.defaultValue ? filed.defaultValue : ''}")${this.line}`)
       if (!this.responseHump) {
         if (this.jsonParse === 'jackson') {
           strList.push(`${this.spaceString}@JsonProperty(value = "${ConvertUtil.toLine(filed.filedName)}")${this.line}`)
