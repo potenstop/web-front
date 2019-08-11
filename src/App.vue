@@ -37,7 +37,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Setting } from 'papio-h5'
 import '@/config/HttpApiConfiguration'
+Setting.setDebug(true)
 @Component
 export default class App extends Vue {
   private theme1: string = 'light';
