@@ -17,7 +17,7 @@ export class HttpApiConfiguration {
     const httpDataSource = new AxiosDataSource()
     httpDataSource.setName('master')
     httpDataSource.setReadOnly(false)
-    httpDataSource.setUrl('http://api.potens.top')
+    httpDataSource.setUrl('http://web.potens.top/api')
     httpDataSource.build()
     return httpDataSource
   }
