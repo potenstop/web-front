@@ -1,5 +1,5 @@
 import {UserAuth} from "@/response/UserAuth";
-import { Property } from 'papio-common'
+import { JsonProperty } from 'papio-h5'
 /**
  *
  * 功能描述:
@@ -12,13 +12,13 @@ import { Property } from 'papio-common'
 
 
 export class UserAuthBaseResponse {
-  @Property
+  @JsonProperty
   private userId: number
-  @Property
+  @JsonProperty
   private nickname: string
-  @Property
+  @JsonProperty
   private avatar: string
-  @Property
+  @JsonProperty
   private userAuthList: UserAuth[]
   public getUserId (): number {
     return this.userId

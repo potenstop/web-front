@@ -8,7 +8,7 @@
  * @date 2019/2/14 10:19
  */
 import { IDataSource } from 'type-interface'
-import { AxiosDataSource, Bean, Configuration, MapperScan } from 'papio-common'
+import { AxiosDataSource, Bean, Configuration, MapperScan } from 'papio-h5'
 @Configuration
 @MapperScan('/src/dao/api')
 export class HttpApiConfiguration {

@@ -13,7 +13,7 @@ import {
   RequestMethod,
   RequestParam,
   ReturnGenericsProperty
-} from 'papio-common'
+} from 'papio-h5'
 import { ApiResult } from "@/bmo/ApiResult"
 import { UserAuthBaseResponse } from "@/response/UserAuthBaseResponse"
 @AxisoRemote({filepath: '/src/dao/api', name: "/user", timeout: 5000})

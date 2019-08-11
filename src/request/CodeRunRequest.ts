@@ -7,12 +7,12 @@
  * @author yanshaowen
  * @date 2019/6/27 19:38
  */
-import { Property } from 'papio-common'
+import { JsonProperty } from 'papio-h5'
 
 export class CodeRunRequest {
-  @Property
+  @JsonProperty
   private code: string
-  @Property
+  @JsonProperty
   private language: string
   public getCode (): string {
     return this.code

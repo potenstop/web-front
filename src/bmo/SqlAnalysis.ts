@@ -7,7 +7,7 @@
  * @author yanshaowen
  * @date 2019/6/30 12:27
  */
-import { ConvertUtil, JSHelperUtil } from 'papio-common'
+import { ConvertUtil, JSHelperUtil } from 'papio-h5'
 import * as SqlParser from 'sql-ddl-to-json-schema'
 const sqlParser = new SqlParser('mysql')
 class Filed {

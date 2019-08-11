@@ -86,6 +86,7 @@ export default class App extends Vue {
     request.setCode(this.editor.getValue())
     try {
       const result = await this.codeApi.codeRun(request)
+      console.log(result)
       if (result.getCode() !== '0') {
         this.outputData = result.getMessage()
       } else {

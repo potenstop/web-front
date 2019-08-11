@@ -11,7 +11,7 @@ import {
   AxisoRemote,
   PostMapping, RequestBody,
   ReturnGenericsProperty
-} from 'papio-common'
+} from 'papio-h5'
 import { ApiResult } from '@/bmo/ApiResult'
 import {CodeRunRequest} from "@/request/CodeRunRequest";
 @AxisoRemote({filepath: '/src/dao/api', name: "/code", timeout: 10000})

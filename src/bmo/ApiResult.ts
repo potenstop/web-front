@@ -7,13 +7,13 @@
  * @author yanshaowen
  * @date 2019/6/24 14:21
  */
-import { Property } from 'papio-common'
+import { JsonProperty } from 'papio-h5'
 export class ApiResult<T> {
-  @Property
+  @JsonProperty
   private code: string
-  @Property
+  @JsonProperty
   private data: T
-  @Property
+  @JsonProperty
   private message: string
   public getCode (): string {
     return this.code

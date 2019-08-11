@@ -8,7 +8,7 @@
  * @date 2019/6/22 12:50
  */
 
-import { ConvertUtil, JSHelperUtil } from 'papio-common'
+import { ConvertUtil, JSHelperUtil } from 'papio-h5'
 class Field {
   public name: string
   public javaType: string

@@ -1,4 +1,4 @@
-import { Property } from 'papio-common'
+import { JsonProperty } from 'papio-h5'
 
 /**
  *
@@ -10,11 +10,11 @@ import { Property } from 'papio-common'
  * @date 2019/6/26 12:47
  */
 export class UserAuth {
-  @Property
+  @JsonProperty
   private userAuthId: number
-  @Property
+  @JsonProperty
   private identityType: number
-  @Property
+  @JsonProperty
   private identifier: string
   public getUserAuthId (): number {
     return this.userAuthId
