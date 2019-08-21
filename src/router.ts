@@ -10,15 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      meta: {
-        title: '首页'
+      redirect: {
+        name: 'sequenceJson'
       }
     },
     {
       path: '/sequence/json',
-      name: 'sequenceMyJson',
+      name: 'sequenceJson',
       component: () => import(/* webpackChunkName: "about" */ './views/sequence/Json.vue'),
       meta: {
         title: 'json序列化'
