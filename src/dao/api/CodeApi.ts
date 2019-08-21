@@ -13,12 +13,12 @@ import {
   ReturnGenericsProperty
 } from 'papio-h5'
 import { ApiResult } from '@/bmo/ApiResult'
-import {CodeRunRequest} from "@/request/CodeRunRequest";
-@AxisoRemote({filepath: '/src/dao/api', name: "/code", timeout: 10000})
+import { CodeRunRequest } from '@/request/CodeRunRequest'
+@AxisoRemote({ filepath: '/src/dao/api', name: '/code', timeout: 10000 })
 export class CodeApi {
-  @PostMapping({path: "/run"})
-  @ReturnGenericsProperty(new Map<string, new () => object>().set("ApiResult", ApiResult).set("ApiResult.data", String))
+  @PostMapping('/run')
+  @ReturnGenericsProperty(ApiResult, new Map<string, new () => object>().set('data', String))
   public codeRun (@RequestBody request: CodeRunRequest): Promise<ApiResult<string>> {
-    return null;
+    return null
   }
 }

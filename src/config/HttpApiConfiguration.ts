@@ -11,7 +11,7 @@ import { IDataSource } from 'type-interface'
 import { AxiosDataSource, Bean, Configuration, MapperScan } from 'papio-h5'
 @Configuration
 @MapperScan('/src/dao/api')
-export class HttpApiConfiguration {
+export class HttpApiConfigloguration {
   @Bean
   public HttpApiConfigurationMaster (): IDataSource {
     const httpDataSource = new AxiosDataSource()
