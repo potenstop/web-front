@@ -19,8 +19,8 @@ import { UserAuthBaseResponse } from '@/response/UserAuthBaseResponse'
 @AxisoRemote({ filepath: '/src/dao/api', name: '/user', timeout: 5000 })
 export class UserApi {
   @GetMapping('visitor/login')
-  @ReturnGenericsProperty(ApiResult, new Map<string, new () => object>().set("data", UserAuthBaseResponse))
-  public visitorLogin(@RequestParam("uuid") uuid: string): Promise<ApiResult<UserAuthBaseResponse>> {
+  @ReturnGenericsProperty(ApiResult, new Map<string, new () => object>().set('data', UserAuthBaseResponse))
+  public visitorLogin (@RequestParam('uuid') uuid: string): Promise<ApiResult<UserAuthBaseResponse>> {
     return null
   }
 }
