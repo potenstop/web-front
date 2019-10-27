@@ -16,14 +16,14 @@
         <MenuItem name="/encrypt/decode">加密</MenuItem>
         <MenuItem name="/encrypt/encode">解密</MenuItem>
       </Submenu>
-      <MenuItem name="/code">代码</MenuItem>
-      <Submenu name="/office">
-        <template slot="title">
-          <Icon type="ios-stats" />
-          在线办公
-        </template>
-        <MenuItem name="/office/execl">execl</MenuItem>
-      </Submenu>
+      <MenuItem name="/code"><Icon type="ios-easel-outline" />代码执行</MenuItem>
+      <!--<Submenu name="/office">-->
+        <!--<template slot="title">-->
+          <!--<Icon type="ios-stats" />-->
+          <!--在线办公-->
+        <!--</template>-->
+        <!--<MenuItem name="/office/execl">execl</MenuItem>-->
+      <!--</Submenu>-->
       <Submenu name="/generate">
         <template slot="title">
           <Icon type="ios-stats" />
