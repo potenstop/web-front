@@ -31,6 +31,13 @@
         </template>
         <MenuItem name="/generate/spring-boot">spring-boot 接口生成</MenuItem>
       </Submenu>
+      <Submenu name="/editor">
+        <template slot="title">
+          <Icon type="ios-cash" />
+          编辑器
+        </template>
+        <MenuItem name="/editor/math-formula">数学公式</MenuItem>
+      </Submenu>
     </Menu>
     <router-view/>
   </div>

@@ -61,6 +61,14 @@ export default new Router({
       meta: {
         title: '在线表格'
       }
+    },
+    {
+      path: '/editor/math-formula',
+      name: 'MathFormulaEditor',
+      component: () => import(/* webpackChunkName: "about" */ './views/editor/MathFormulaEditor.vue'),
+      meta: {
+        title: '数学公式'
+      }
     }
 
   ]
